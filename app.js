@@ -108,6 +108,17 @@ function selectWord(cleanWord, originalWord) {
         return;
     }
     
+    // Remove selected class from all blank words
+    document.querySelectorAll('.blank-word.selected').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    
+    // Add selected class to the clicked word
+    const selectedBtn = document.querySelector(`[data-word="${cleanWord}"]`);
+    if (selectedBtn) {
+        selectedBtn.classList.add('selected');
+    }
+    
     currentSelectedWord = cleanWord;
     const alternatives = getAlternatives(originalWord);
     

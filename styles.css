@@ -196,6 +196,13 @@ header .subtitle {
     border-color: var(--error-color);
 }
 
+.blank-word.selected {
+    background-color: #f97316;
+    color: white;
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+}
+
 /* Word Options */
 .word-options {
     position: fixed;
