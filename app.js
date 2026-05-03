@@ -140,9 +140,6 @@ function selectOption(selectedWord, correctWord) {
         correct: isCorrect
     };
     
-    // Hide options
-    document.getElementById('wordOptions').style.display = 'none';
-    
     // Re-render text to show filled word
     renderBibleText();
     updateProgress();
@@ -150,6 +147,20 @@ function selectOption(selectedWord, correctWord) {
     // Check if all words are answered
     if (Object.keys(userAnswers).length === totalBlankedWords) {
         showScore();
+    } else {
+        // Find and select the next unanswered blank word
+        selectNextBlankWord();
+    }
+}
+
+// Select the next unanswered blank word
+function selectNextBlankWord() {
+    // Find all blank word buttons
+    const blankButtons = document.querySelectorAll('.blank-word:not(:disabled)');
+    
+    if (blankButtons.length > 0) {
+        // Select the first unanswered blank word
+        blankButtons[0].click();
     }
 }
 
