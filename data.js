@@ -5,22 +5,7 @@ const BIBLE_DATA = {
     passages: [
         {
             verseNum: "1",
-            text: "Therefore if you have any encouragement from being united with Christ, if any comfort from his love, if any common sharing in the Spirit, if any tenderness and compassion,",
-            indent: 0
-        },
-        {
-            verseNum: "2",
-            text: "then make my joy complete by being like-minded, having the same love, being one in spirit and of one mind.",
-            indent: 0
-        },
-        {
-            verseNum: "3",
-            text: "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves,",
-            indent: 0
-        },
-        {
-            verseNum: "4",
-            text: "not looking to your own interests but each of you to the interests of the others.",
+            text: "Therefore if you have any encouragement from being united with Christ, if any comfort from his love, if any common sharing in the Spirit, if any tenderness and compassion, 2 then make my joy complete by being like-minded, having the same love, being one in spirit and of one mind. 3 Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves, 4 not looking to your own interests but each of you to the interests of the others.",
             indent: 0
         },
         {
@@ -31,77 +16,87 @@ const BIBLE_DATA = {
         {
             verseNum: "6",
             text: "Who, being in very nature God,",
-            indent: 1
+            indent: 0
         },
         {
-            verseNum: "7",
+            verseNum: "6b",
             text: "did not consider equality with God something to be used to his own advantage;",
             indent: 1
         },
         {
-            verseNum: "8",
+            verseNum: "7",
             text: "rather, he made himself nothing",
-            indent: 1
+            indent: 0
         },
         {
-            verseNum: "9",
+            verseNum: "7b",
             text: "by taking the very nature of a servant,",
-            indent: 2
-        },
-        {
-            verseNum: "10",
-            text: "being made in human likeness.",
-            indent: 2
-        },
-        {
-            verseNum: "11",
-            text: "And being found in appearance as a man,",
             indent: 1
         },
         {
-            verseNum: "12",
+            verseNum: "7c",
+            text: "being made in human likeness.",
+            indent: 1
+        },
+        {
+            verseNum: "8",
+            text: "And being found in appearance as a man,",
+            indent: 0
+        },
+        {
+            verseNum: "8b",
             text: "he humbled himself",
             indent: 1
         },
         {
-            verseNum: "13",
+            verseNum: "8c",
             text: "by becoming obedient to death—",
-            indent: 2
+            indent: 1
         },
         {
-            verseNum: "14",
+            verseNum: "8d",
             text: "even death on a cross!",
             indent: 2
         },
         {
-            verseNum: "15",
+            verseNum: "9",
             text: "Therefore God exalted him to the highest place",
-            indent: 1
+            indent: 0
         },
         {
-            verseNum: "16",
+            verseNum: "9b",
             text: "and gave him the name that is above every name,",
             indent: 1
         },
         {
-            verseNum: "17",
+            verseNum: "10",
             text: "that at the name of Jesus every knee should bow,",
+            indent: 0
+        },
+        {
+            verseNum: "10b",
+            text: "in heaven and on earth and under the earth,",
             indent: 1
         },
         {
-            verseNum: "18",
-            text: "in heaven and on earth and under the earth,",
-            indent: 2
-        },
-        {
-            verseNum: "19",
+            verseNum: "11",
             text: "and every tongue acknowledge that Jesus Christ is Lord,",
-            indent: 2
+            indent: 0
         },
         {
-            verseNum: "20",
+            verseNum: "11b",
             text: "to the glory of God the Father.",
-            indent: 2
+            indent: 1
+        },
+        {
+            verseNum: "12",
+            text: "Therefore, my dear friends, as you have always obeyed—not only in my presence, but now much more in my absence—continue to work out your salvation with fear and trembling, 13 for it is God who works in you to will and to act in order to fulfill his good purpose.",
+            indent: 0
+        },
+        {
+            verseNum: "14",
+            text: "Do everything without grumbling or arguing, 15 so that you may become blameless and pure, \"children of God without fault in a warped and crooked generation.\" Then you will shine among them like stars in the sky 16 as you hold firmly to the word of life. And then I will be able to boast on the day of Christ that I did not run or labor in vain. 17 But even if I am being poured out like a drink offering on the sacrifice and service coming from your faith, I am glad and rejoice with all of you. 18 So you too should be glad and rejoice with me.",
+            indent: 0
         }
     ]
 };
