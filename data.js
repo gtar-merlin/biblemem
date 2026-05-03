@@ -19,7 +19,7 @@ const BIBLE_DATA = {
             indent: 0
         },
         {
-            verseNum: "6",
+            verseNum: "",
             text: "did not consider equality with God something to be used to his own advantage;",
             indent: 1
         },
@@ -29,12 +29,12 @@ const BIBLE_DATA = {
             indent: 0
         },
         {
-            verseNum: "7",
+            verseNum: "",
             text: "by taking the very nature of a servant,",
             indent: 1
         },
         {
-            verseNum: "7",
+            verseNum: "",
             text: "being made in human likeness.",
             indent: 1
         },
@@ -44,17 +44,17 @@ const BIBLE_DATA = {
             indent: 0
         },
         {
-            verseNum: "8",
+            verseNum: "",
             text: "he humbled himself",
             indent: 1
         },
         {
-            verseNum: "8",
+            verseNum: "",
             text: "by becoming obedient to death—",
             indent: 1
         },
         {
-            verseNum: "8",
+            verseNum: "",
             text: "even death on a cross!",
             indent: 2
         },
@@ -64,7 +64,7 @@ const BIBLE_DATA = {
             indent: 0
         },
         {
-            verseNum: "9",
+            verseNum: "",
             text: "and gave him the name that is above every name,",
             indent: 1
         },
@@ -74,7 +74,7 @@ const BIBLE_DATA = {
             indent: 0
         },
         {
-            verseNum: "10",
+            verseNum: "",
             text: "in heaven and on earth and under the earth,",
             indent: 1
         },
@@ -84,7 +84,7 @@ const BIBLE_DATA = {
             indent: 0
         },
         {
-            verseNum: "11",
+            verseNum: "",
             text: "to the glory of God the Father.",
             indent: 1
         },
