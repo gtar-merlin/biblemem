@@ -61,15 +61,17 @@ function renderBibleText() {
                 // Whitespace
                 verseDiv.appendChild(document.createTextNode(word));
             } else {
-                // Check if word should be blanked
+                // Separate word from trailing punctuation
+                const punctuationMatch = word.match(/^([\w-]+)([\.,;:!?\-—]*)$/);
                 const cleanWord = word.replace(/[^\w-]/g, '').toLowerCase();
+                const trailingPunctuation = punctuationMatch ? punctuationMatch[2] : '';
                 
                 if (blankedWords.has(cleanWord) && cleanWord.length >= 7) {
                     // Create blank word button
                     const wordBtn = document.createElement('button');
                     wordBtn.className = 'blank-word';
                     wordBtn.dataset.word = cleanWord;
-                    wordBtn.dataset.originalWord = word;
+                    wordBtn.dataset.originalWord = cleanWord;
                     
                     // Check if already answered
                     if (userAnswers[cleanWord]) {
@@ -81,8 +83,13 @@ function renderBibleText() {
                         wordBtn.textContent = '______';
                     }
                     
-                    wordBtn.onclick = () => selectWord(cleanWord, word);
+                    wordBtn.onclick = () => selectWord(cleanWord, cleanWord);
                     verseDiv.appendChild(wordBtn);
+                    
+                    // Add trailing punctuation after the button
+                    if (trailingPunctuation) {
+                        verseDiv.appendChild(document.createTextNode(trailingPunctuation));
+                    }
                 } else {
                     // Regular word
                     verseDiv.appendChild(document.createTextNode(word));
