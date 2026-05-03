@@ -25,6 +25,9 @@ function resetSession() {
     
     renderBibleText();
     updateProgress();
+    
+    // Auto-select the first blank word
+    selectNextBlankWord();
 }
 
 // Change difficulty and reset
