@@ -183,6 +183,11 @@ biblemem/
 - Fast load times
 - Optimized for mobile networks
 
+## Credits
+
+### Icons
+<a href="https://www.flaticon.com/free-icons/bible" title="bible icons">Bible icons created by Haca Studio - Flaticon</a>
+
 ## License
 
 This project is open source and available under the MIT License.
