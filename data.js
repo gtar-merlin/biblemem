@@ -102,19 +102,23 @@ const BIBLE_DATA = {
 };
 
 // Word alternatives for semantic matching
-// Each word (7+ characters) has 2-3 alternative words in similar semantic range
+// Each word (6+ characters) has 2-3 alternative words in similar semantic range
 const WORD_ALTERNATIVES = {
     "absence": ["lack", "missing", "nonexistence"],
     "acknowledge": ["recognize", "admit", "confess"],
     "advantage": ["benefit", "gain", "privilege"],
+    "always": ["ever", "constantly", "forever"],
     "ambition": ["aspiration", "drive", "pursuit"],
     "another": ["other", "different", "next"],
     "appearance": ["look", "form", "semblance"],
     "arguing": ["disputing", "quarreling", "debating"],
+    "become": ["turn", "grow", "develop"],
     "becoming": ["turning", "growing", "developing"],
     "blameless": ["faultless", "innocent", "spotless"],
     "children": ["offspring", "kids", "young ones"],
+    "christ": ["messiah", "savior", "lord"],
     "comfort": ["solace", "consolation", "relief"],
+    "common": ["shared", "mutual", "collective"],
     "compassion": ["empathy", "sympathy", "mercy"],
     "complete": ["fulfilled", "satisfied", "finished"],
     "conceit": ["arrogance", "vanity", "pride"],
@@ -124,9 +128,12 @@ const WORD_ALTERNATIVES = {
     "equality": ["equivalence", "parity", "sameness"],
     "everything": ["all things", "anything", "all"],
     "exalted": ["elevated", "raised", "promoted"],
+    "father": ["parent", "creator", "god"],
     "friends": ["companions", "allies", "associates"],
     "fulfill": ["complete", "accomplish", "achieve"],
     "grumbling": ["complaining", "murmuring", "groaning"],
+    "having": ["possessing", "holding", "owning"],
+    "heaven": ["sky", "paradise", "above"],
     "highest": ["supreme", "topmost", "greatest"],
     "himself": ["self", "oneself", "person"],
     "humbled": ["lowered", "abased", "diminished"],
@@ -134,22 +141,32 @@ const WORD_ALTERNATIVES = {
     "interests": ["concerns", "priorities", "matters"],
     "likeness": ["resemblance", "similarity", "image"],
     "looking": ["watching", "seeing", "gazing"],
+    "minded": ["inclined", "disposed", "oriented"],
     "mindset": ["attitude", "perspective", "outlook"],
+    "nature": ["essence", "character", "being"],
     "nothing": ["emptiness", "void", "nothingness"],
     "obedient": ["compliant", "submissive", "dutiful"],
+    "obeyed": ["complied", "followed", "heeded"],
+    "others": ["people", "persons", "individuals"],
     "presence": ["company", "existence", "attendance"],
     "purpose": ["goal", "aim", "intention"],
+    "rather": ["instead", "on the other hand", "but"],
     "rejoice": ["celebrate", "delight", "be happy"],
     "relationships": ["connections", "associations", "interactions"],
-    "service": ["ministry", "duty", "work"],
     "salvation": ["deliverance", "redemption", "rescue"],
     "selfish": ["self-centered", "egocentric", "narcissistic"],
     "servant": ["helper", "attendant", "minister"],
+    "service": ["ministry", "duty", "work"],
     "sharing": ["fellowship", "communion", "participation"],
+    "should": ["must", "ought", "shall"],
     "something": ["anything", "whatever", "thing"],
+    "spirit": ["essence", "soul", "breath"],
+    "taking": ["accepting", "receiving", "taking"],
     "tenderness": ["gentleness", "kindness", "compassion"],
     "therefore": ["thus", "consequently", "so"],
+    "tongue": ["language", "speech", "voice"],
     "trembling": ["shaking", "quivering", "fear"],
+    "united": ["joined", "connected", "bonded"],
     "without": ["lacking", "devoid of", "minus"],
     "yourselves": ["themselves", "each other", "one another"]
 };
@@ -163,13 +180,13 @@ function getAlternatives(word) {
     return ["option1", "option2", "option3"];
 }
 
-// Function to extract all words 7+ characters from the text
+// Function to extract all words 6+ characters from the text
 function extractLongWords() {
     const longWords = new Set();
     BIBLE_DATA.passages.forEach(passage => {
         const words = passage.text.match(/\b\w+\b/g) || [];
         words.forEach(word => {
-            if (word.length >= 7) {
+            if (word.length >= 6) {
                 longWords.add(word.toLowerCase());
             }
         });

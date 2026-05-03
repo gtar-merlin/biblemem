@@ -66,7 +66,7 @@ function renderBibleText() {
                 const cleanWord = word.replace(/[^\w-]/g, '').toLowerCase();
                 const trailingPunctuation = punctuationMatch ? punctuationMatch[2] : '';
                 
-                if (blankedWords.has(cleanWord) && cleanWord.length >= 7) {
+                if (blankedWords.has(cleanWord) && cleanWord.length >= 6) {
                     // Create blank word button
                     const wordBtn = document.createElement('button');
                     wordBtn.className = 'blank-word';
