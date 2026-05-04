@@ -5,6 +5,9 @@ let blankedWords = new Set();
 let userAnswers = {};
 let currentSelectedWord = null;
 let totalBlankedWords = 0;
+let wordInstanceMap = {}; // Maps unique IDs to word data
+let nextWordId = 0;
+
 
 // Initialize the app
 function init() {
@@ -17,7 +20,14 @@ function resetSession() {
     blankedWords = getBlankedWords(currentDifficulty);
     userAnswers = {};
     currentSelectedWord = null;
-    totalBlankedWords = blankedWords.size;
+    wordInstanceMap = {};
+    nextWordId = 0;
+    
+    // Pre-generate word IDs for all blanked words
+    generateWordIds();
+    
+    // Total blanked words is the number of word instances, not unique words
+    totalBlankedWords = Object.keys(wordInstanceMap).length;
     
     // Hide score display
     document.getElementById('scoreDisplay').style.display = 'none';
@@ -28,6 +38,28 @@ function resetSession() {
     
     // Auto-select the first blank word
     selectNextBlankWord();
+}
+
+// Pre-generate word IDs for all blanked words to maintain consistency
+function generateWordIds() {
+    const wordIdMap = {}; // Maps word text to array of IDs
+    
+    BIBLE_DATA.passages.forEach(passage => {
+        const words = passage.text.split(/(\s+)/);
+        words.forEach(word => {
+            if (!word.match(/\s+/)) {
+                const cleanWord = word.replace(/[^\w-]/g, '').toLowerCase();
+                if (blankedWords.has(cleanWord) && cleanWord.length >= 6) {
+                    if (!wordIdMap[cleanWord]) {
+                        wordIdMap[cleanWord] = [];
+                    }
+                    const wordId = nextWordId++;
+                    wordIdMap[cleanWord].push(wordId);
+                    wordInstanceMap[wordId] = { word: cleanWord, originalWord: cleanWord };
+                }
+            }
+        });
+    });
 }
 
 // Change difficulty and reset
@@ -45,6 +77,9 @@ function changeDifficultyAndReset() {
 function renderBibleText() {
     const container = document.getElementById('bibleText');
     container.innerHTML = '';
+    
+    // Track word instances to assign consistent IDs
+    const wordInstanceCount = {};
     
     BIBLE_DATA.passages.forEach(passage => {
         const verseDiv = document.createElement('div');
@@ -70,15 +105,35 @@ function renderBibleText() {
                 const trailingPunctuation = punctuationMatch ? punctuationMatch[2] : '';
                 
                 if (blankedWords.has(cleanWord) && cleanWord.length >= 6) {
+                    // Get the instance count for this word
+                    if (!wordInstanceCount[cleanWord]) {
+                        wordInstanceCount[cleanWord] = 0;
+                    }
+                    const instanceIndex = wordInstanceCount[cleanWord]++;
+                    
+                    // Calculate wordId based on word and instance
+                    let wordId = null;
+                    let currentInstance = 0;
+                    for (const id in wordInstanceMap) {
+                        if (wordInstanceMap[id].word === cleanWord) {
+                            if (currentInstance === instanceIndex) {
+                                wordId = parseInt(id);
+                                break;
+                            }
+                            currentInstance++;
+                        }
+                    }
+                    
                     // Create blank word button
                     const wordBtn = document.createElement('button');
                     wordBtn.className = 'blank-word';
+                    wordBtn.dataset.wordId = wordId;
                     wordBtn.dataset.word = cleanWord;
                     wordBtn.dataset.originalWord = cleanWord;
                     
                     // Check if already answered
-                    if (userAnswers[cleanWord]) {
-                        const answer = userAnswers[cleanWord];
+                    if (userAnswers[wordId]) {
+                        const answer = userAnswers[wordId];
                         wordBtn.textContent = answer.word;
                         wordBtn.classList.add(answer.correct ? 'correct' : 'incorrect');
                         wordBtn.disabled = true;
@@ -86,7 +141,7 @@ function renderBibleText() {
                         wordBtn.textContent = '______';
                     }
                     
-                    wordBtn.onclick = () => selectWord(cleanWord, cleanWord);
+                    wordBtn.onclick = () => selectWord(wordId, cleanWord, cleanWord);
                     verseDiv.appendChild(wordBtn);
                     
                     // Add trailing punctuation after the button
@@ -105,9 +160,9 @@ function renderBibleText() {
 }
 
 // Select a word to fill in
-function selectWord(cleanWord, originalWord) {
+function selectWord(wordId, cleanWord, originalWord) {
     // If already answered, don't allow selection
-    if (userAnswers[cleanWord]) {
+    if (userAnswers[wordId]) {
         return;
     }
     
@@ -117,12 +172,12 @@ function selectWord(cleanWord, originalWord) {
     });
     
     // Add selected class to the clicked word
-    const selectedBtn = document.querySelector(`[data-word="${cleanWord}"]`);
+    const selectedBtn = document.querySelector(`[data-word-id="${wordId}"]`);
     if (selectedBtn) {
         selectedBtn.classList.add('selected');
     }
     
-    currentSelectedWord = cleanWord;
+    currentSelectedWord = wordId;
     const alternatives = getAlternatives(originalWord);
     
     // Shuffle alternatives and put correct answer in random position
@@ -196,7 +251,9 @@ function showScore() {
     document.getElementById('correctCount').textContent = correct;
     document.getElementById('totalCount').textContent = totalBlankedWords;
     
-    document.getElementById('scoreDisplay').style.display = 'block';
+    // Hide word options and show score display
+    document.getElementById('wordOptions').style.display = 'none';
+    document.getElementById('scoreDisplay').style.display = 'flex';
     document.getElementById('bibleText').style.opacity = '0.5';
 }
 
